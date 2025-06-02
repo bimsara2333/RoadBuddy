@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoadBuddy - ML-based Driver Assistant System</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .timeline-container {
+            position: relative;
+            padding-left: 2rem;
+        }
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 2px;
+            background-color: #3B82F6;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -9px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #3B82F6;
+        }
+        .gradient-bg {
+            background: 
+                linear-gradient(to right, rgba(17, 11, 124, 0.8) 0%, rgba(255, 255, 255, 0) 100%),
+                url('Images/back.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .feature-card {
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800 bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md py-4 sticky top-0 z-50">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="Images/logo.png" alt="RoadBuddy Logo" class="h-10">
+                <span class="ml-3 text-xl font-bold text-blue-600">RoadBuddy</span>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#about" class="text-gray-700 hover:text-blue-600 transition">About</a>
+                <a href="#features" class="text-gray-700 hover:text-blue-600 transition">Features</a>
+                <a href="#technologies" class="text-gray-700 hover:text-blue-600 transition">Technologies</a>
+                <a href="#team" class="text-gray-700 hover:text-blue-600 transition">Team</a>
+                <a href="#milestones" class="text-gray-700 hover:text-blue-600 transition">Milestones</a>
+                <a href="#documents" class="text-gray-700 hover:text-blue-600 transition">Resources</a>
+                <a href="#results" class="text-gray-700 hover:text-blue-600 transition">Results</a>
+                <a href="#contact" class="text-gray-700 hover:text-blue-600 transition">Contact</a>
+            </div>
+            <div class="md:hidden">
+                <button class="text-gray-700 focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center gradient-bg">
+        <div class="absolute inset-0 bg-black opacity-40"></div>
+        <div class="container mx-auto px-4 z-10 text-white">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6">RoadBuddy</h1>
+            <p class="text-2xl md:text-3xl mb-8 max-w-3xl">Machine Learning based driver assistant system to reduce road accidents in Sri Lanka</p>
+            <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+                <a href="#about" class="bg-white text-blue-600 hover:bg-gray-100 py-3 px-8 rounded-lg font-bold transition transform hover:scale-105 text-center">Learn More</a>
+                <a href="#contact" class="bg-transparent border-2 border-white hover:bg-white hover:text-blue-600 py-3 px-8 rounded-lg font-bold transition transform hover:scale-105 text-center">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Simple JavaScript for smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Mobile menu toggle
+        document.querySelector('.md\\:hidden button').addEventListener('click', function() {
+            const nav = document.querySelector('.md\\:flex');
+            nav.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">About RoadBuddy</h2>
+                <div class="w-24 h-1 bg-blue-600 mx-auto mb-8"></div>
+                <p class="text-lg text-gray-600 max-w-4xl mx-auto">
+                    RoadBuddy is a comprehensive Machine Learning-based Driver Assistant System (DAS) designed to 
+                    address key challenges in Sri Lanka's driving landscape. Our mission is to significantly reduce 
+                    traffic accidents by tackling issues like reckless driving, insufficient road sign detection, 
+                    and poor lane discipline.
+                </p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 pr-0 md:pr-10 mb-10 md:mb-0">
+                    <h3 class="text-2xl font-semibold mb-4">Objectives</h3>
+                    <p class="text-gray-600 mb-6">Road safety is a pervasive concern in Sri Lanka, where the rate of traffic accidents has led to significant loss of life and property. Despite various governmental initiatives aimed at improving road safety, the need for innovative solutions remains evident.</p>
+                    
+                    <p class="text-gray-600 mb-6">RoadBuddy is a comprehensive Machine Learning-based Driver Assistant System (DAS) designed to mitigate key challenges in the driving landscape of Sri Lanka, including reckless driving, insufficient road sign detection, and poor lane discipline.</p>
+                    
+                    <h3 class="text-2xl font-semibold mb-4">The Problem</h3>
+                    <p class="text-gray-600">According to the World Health Organization, road traffic accidents are the leading cause of injury death among youth aged 5–29 years, and the seventh leading cause of death for all ages across the globe. Sri Lanka, like most low- and middle-income countries, is greatly impacted by road safety due to irresponsible driving, poor road conditions, and poor enforcement of traffic regulations.</p>
+                </div>
+                
+                <div class="md:w-1/2 pl-0 md:pl-10 border-t md:border-t-0 md:border-l border-gray-200 pt-10 md:pt-0 md:pl-10">
+                    <h3 class="text-2xl font-semibold mb-4">Our Solution</h3>
+                    <p class="text-gray-600 mb-6">RoadBuddy is a comprehensive solution that includes several key features designed to enhance road safety:</p>
+                    
+                    <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6">
+                        <li>Virtual instructor provides real-time feedback and guidance to drivers</li>
+                        <li>Biometric verification for driver identification and personalized assistance</li>
+                        <li>Parking assistance to detect available spots and assist with correct alignment</li>
+                        <li>Enhanced road sign detection to keep drivers informed of traffic conditions</li>
+                        <li>Blind spot detection to alert drivers about vehicles or obstacles</li>
+                        <li>Driver monitoring system to detect drowsiness, distraction, or fatigue</li>
+                    </ul>
+                    
+                    <p class="text-gray-600">The significance of this research lies in its potential to substantially reduce traffic accidents in Sri Lanka by addressing the root causes of unsafe driving. By integrating advanced technologies such as machine learning, RoadBuddy offers a proactive approach to road safety.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Literature Review Section -->
+<section id="literature" class="py-20 bg-gray-100">
+  <div class="container mx-auto px-6 md:px-12 lg:px-24">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Literature Review</h2>
+      <br>
+      <div class="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
+      <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+        A review of global and local research highlighting the importance of ADAS and RoadBuddy’s innovative approach to road safety.
+      </p>
+    </div>
+
+    <div class="md:flex md:gap-12 items-start">
+      <!-- Text Content (Left side) -->
+      <div class="md:w-2/3 text-justify text-gray-800 space-y-6">
+        <p>
+          The integration of intelligent technologies in modern vehicles has become pivotal for enhancing driver safety, security, and convenience. Extensive research has been carried out across several domains of advanced driver assistance systems (ADAS), including driver identification and monitoring, blind spot detection, parking assistance, road sign recognition, and multimodal alert systems. These components, while traditionally explored in isolation, are increasingly being combined into unified systems for holistic support and accident prevention.
+        </p>
+        <p>
+          Driver Identification and Monitoring systems play a crucial role in ensuring that only authorized individuals operate a vehicle while also maintaining driver attention and alertness throughout the journey. Studies have demonstrated the effectiveness of monitoring driver behavior to detect distraction and drowsiness using machine learning. However, these systems often fail to address driver identity verification. In contrast, biometric identification methods such as facial recognition and voice authentication contribute to secure access but are limited in providing continuous verification throughout a trip.
+        </p>
+        <p>
+          Recent advances leverage deep learning to enhance driver monitoring. These include affect recognition for emotional state analysis, CNN-based facial recognition with real-time monitoring, and complementary technologies such as infrared and thermal imaging to ensure performance under challenging conditions. Multimodal biometric integration further strengthens these systems by combining facial, voice, and fingerprint data for robust verification.
+        </p>
+        <p>
+          In addition, predictive behavior analysis using physiological data—such as heart rate and skin conductance—and in-vehicle sensor integration provide real-time monitoring of driver readiness and focus. These holistic approaches enhance the reliability and safety of modern driving experiences.
+        </p>
+        <p>
+          Blind Spot Detection has evolved rapidly, especially in traffic-dense regions. Deep learning and computer vision have enabled real-time object detection in hidden zones, while radar technologies offer robustness in adverse weather. Multi-sensor fusion techniques and regional adaptations improve detection accuracy and usability across various conditions.
+        </p>
+        <p>
+          Parking Assistance systems have matured from basic ultrasonic sensors to intelligent, AI-driven solutions. Innovations include 3D modeling, hybrid sensor integration, and autonomous parking functionalities tailored to different vehicle types and environments.
+        </p>
+        <p>
+          Road Sign Recognition systems have seen major progress due to CNNs and GANs, addressing real-world variability and complex traffic scenarios. Climate condition monitoring using sensor fusion further strengthens the reliability of ADAS in low-visibility conditions.
+        </p>
+        <p>
+          Multimodal alert systems combining visual and auditory cues improve driver reaction times, reducing cognitive load. Unified ADAS platforms are aligned with the development of Intelligent Transportation Systems (ITS), enabling predictive analytics and real-time adaptability.
+        </p>
+        <p>
+          Despite these advancements, challenges remain in ensuring reliability, cybersecurity, and ethical compliance. However, the convergence of machine learning, sensor technologies, and user-centered design continues to shape the future of safer, smarter vehicles.
+        </p>
+      </div>
+
+      <!-- Right Side Images -->
+      <div class="md:w-1/3 space-y-8 mt-12 md:mt-0 text-center">
+        <div>
+          <img src="Images/a1.jpg" alt="ADAS Illustration 1" class="w-full max-w-sm mx-auto rounded shadow-lg">
+        </div>
+        <div>
+          <img src="Images/a2.jpg" alt="ADAS Illustration 2" class="w-full max-w-sm mx-auto rounded shadow-lg">
+        </div>
+        <div>
+          <img src="Images/a3.jpg" alt="ADAS Illustration 1" class="w-full max-w-sm mx-auto rounded shadow-lg">
+        </div>
+        <div>
+          <img src="Images/a4.jpg" alt="ADAS Illustration 2" class="w-full max-w-sm mx-auto rounded shadow-lg">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Key Features</h2>
+                <div class="w-24 h-1 bg-blue-600 mx-auto mb-8"></div>
+                <p class="text-lg text-gray-600 max-w-4xl mx-auto">
+                    RoadBuddy incorporates advanced technologies to provide a comprehensive solution for road safety.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-white rounded-lg shadow-md p-6 feature-card">
+                    <div class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mb-6">
+                        <i class="fas fa-id-card text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Driver Identification</h3>
+                    <p class="text-gray-600">
+                        Biometric verification ensures only authorized drivers can access the vehicle, personalizing the driving experience.
+                    </p>
+                    <div class="mt-4 text-blue-600">
+                        <p class="font-bold">95% Accuracy</p>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-white rounded-lg shadow-md p-6 feature-card">
+                    <div class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mb-6">
+                        <i class="fas fa-traffic-light text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Road Sign Detection</h3>
+                    <p class="text-gray-600">
+                        Real-time recognition and narration of traffic signs to enhance driver awareness of upcoming conditions.
+                    </p>
+                    <div class="mt-4 text-blue-600">
+                        <p class="font-bold">94% Accuracy</p>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-white rounded-lg shadow-md p-6 feature-card">
+                    <div class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mb-6">
+                        <i class="fas fa-car-side text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Blind Spot Detection</h3>
+                    <p class="text-gray-600">
+                        Monitors blind spots and alerts drivers to potential hazards, significantly reducing the risk of collisions.
+                    </p>
+                    <div class="mt-4 text-blue-600">
+                        <p class="font-bold">92% Accuracy</p>
+                    </div>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="bg-white rounded-lg shadow-md p-6 feature-card">
+                    <div class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mb-6">
+                        <i class="fas fa-parking text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Parking Assistance</h3>
+                    <p class="text-gray-600">
+                        Helps identify parking spots and guides drivers through the parking process to prevent accidents.
+                    </p>
+                    <div class="mt-4 text-blue-600">
+                        <p class="font-bold">89% Accuracy</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section id="technologies" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Technologies Used</h2>
+                <div class="w-24 h-1 bg-blue-600 mx-auto mb-8"></div>
+                <p class="text-lg text-gray-600 max-w-4xl mx-auto">
+                    Our system leverages cutting-edge technologies to provide an efficient and effective driver assistance solution.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 text-center">
+                <!-- Technology 1 -->
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm card-hover transition duration-300">
+                    <img src="Images/arduino.png" alt="TensorFlow" class="w-16 h-16 mx-auto mb-4">
+                    <h3 class="font-bold">Arduino</h3>
+                </div>
+
+                <!-- Technology 2 -->
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm card-hover transition duration-300">
+                    <img src="Images/raspberry.png" alt="Python" class="w-16 h-16 mx-auto mb-4">
+                    <h3 class="font-bold">Raspberry PI</h3>
+                </div>
+
+                <!-- Technology 3 -->
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm card-hover transition duration-300">
+                    <img src="Images/react.png" alt="React Native" class="w-16 h-16 mx-auto mb-4">
+                    <h3 class="font-bold">React Native</h3>
+                </div>
+
+                <!-- Technology 4 -->
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm card-hover transition duration-300">
+                    <img src="Images/python.png" alt="Arduino" class="w-16 h-16 mx-auto mb-4">
+                    <h3 class="font-bold">Python</h3>
+                </div>
+
+                <!-- Technology 5 -->
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm card-hover transition duration-300">
+                    <img src="Images/opencv.png" alt="Raspberry Pi" class="w-16 h-16 mx-auto mb-4">
+                    <h3 class="font-bold">Open CV</h3>
+                </div>
+
+                <!-- Technology 6 -->
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm card-hover transition duration-300">
+                    <img src="Images/firebase.png" alt="Firebase" class="w-16 h-16 mx-auto mb-4">
+                    <h3 class="font-bold">Firebase</h3>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Meet Our Team</h2>
+                <div class="w-24 h-1 bg-blue-600 mx-auto mb-8"></div>
+                <p class="text-lg text-gray-600 max-w-4xl mx-auto">
+                    Our team of researchers and developers from Sri Lanka Institute of Information Technology.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Team Member 1 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover transition duration-300">
+                    <img src="Images/bimsara.jpeg" alt="Somarathne R.M.B.C." class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Somarathne R.M.B.C.</h3>
+                        <p class="text-gray-600 mb-4">Sri Lanka Institute of Information Technology</p>
+                        <p class="text-gray-500 text-sm">it21210938@my.sliit.lk</p>
+                        <div class="flex mt-4 space-x-3">
+                            <a href="https://www.linkedin.com/in/bimsara-somarathne/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="https://github.com/bimsara2333" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="mailto:it21210938@my.sliit.lk" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Team Member 2 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover transition duration-300">
+                    <img src="Images/archana.jpeg" alt="Wijerathne G.A.R." class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Wijerathne G.A.R.</h3>
+                        <p class="text-gray-600 mb-4">Sri Lanka Institute of Information Technology</p>
+                        <p class="text-gray-500 text-sm">it21349638@my.sliit.lk</p>
+                        <div class="flex mt-4 space-x-3">
+                            <a href="https://www.linkedin.com/in/archana-wijerathne/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="https://github.com/it21349638" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="mailto:it21349638@my.sliit.lk" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 3 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover transition duration-300">
+                    <img src="Images/chathuni.jpeg" alt="Nayanathara R.M.C." class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Nayanathara R.M.C.</h3>
+                        <p class="text-gray-600 mb-4">Sri Lanka Institute of Information Technology</p>
+                        <p class="text-gray-500 text-sm">it21365300@my.sliit.lk</p>
+                        <div class="flex mt-4 space-x-3">
+                            <a href="https://www.linkedin.com/in/chathuni-nayanathara-605225217" target="_blank" class="text-blue-600 hover:text-blue-800"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/ChathuniN" target="_blank" class="text-blue-600 hover:text-blue-800"><i class="fab fa-github"></i></a>
+                            <a href="mailto:it21365300@my.sliit.lk" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 4 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover transition duration-300">
+                    <img src="Images/kaveeshwara.jpeg" alt="Neelawala P.K.N.G.K.B." class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Neelawala P.K.N.G.K.B.</h3>
+                        <p class="text-gray-600 mb-4">Sri Lanka Institute of Information Technology</p>
+                        <p class="text-gray-500 text-sm">it21231728@my.sliit.lk</p>
+                        <div class="flex mt-4 space-x-3">
+                            <a href="https://www.linkedin.com/in/kaveeshwara-neelawala" target="_blank" class="text-blue-600 hover:text-blue-800"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/IT21231728" target="_blank" class="text-blue-600 hover:text-blue-800"><i class="fab fa-github"></i></a>
+                            <a href="mailto:it21231728@my.sliit.lk" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Supervisor 1 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover transition duration-300">
+                    <img src="Images/ravi.PNG" alt="N.H.P. Ravi Supunya Swarnakantha" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">N.H.P. Ravi Supunya Swarnakantha</h3>
+                        <p class="text-gray-600 mb-4">Sri Lanka Institute of Information Technology</p>
+                        <p class="text-gray-500 text-sm">ravi.s@sliit.lk</p>
+                        <div class="mt-2 bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded">Supervisor</div>
+                        <div class="flex mt-4 space-x-3">
+                            <a href="#" class="text-blue-600 hover:text-blue-800"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="text-blue-600 hover:text-blue-800"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Supervisor 2 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover transition duration-300">
+                    <img src="Images/dulani.jpeg" alt="Dulani Jayasinghe" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Dulani Jayasinghe</h3>
+                        <p class="text-gray-600 mb-4">Sri Lanka Institute of Information Technology</p>
+                        <p class="text-gray-500 text-sm">dulani.m@sliit.lk</p>
+                        <div class="mt-2 bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded">Co-supervisor</div>
+                        <div class="flex mt-4 space-x-3">
+                            <a href="#" class="text-blue-600 hover:text-blue-800"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="text-blue-600 hover:text-blue-800"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Milestones Section -->
+<section id="milestones" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Project Milestones</h2>
+            <div class="w-24 h-1 bg-blue-600 mx-auto mb-8"></div>
+            <p class="text-lg text-gray-600 max-w-4xl mx-auto">
+                Our journey in developing RoadBuddy from concept to implementation.
+            </p>
+        </div>
+
+        <div class="max-w-4xl mx-auto">
+
+            <!-- Milestone 1 -->
+            <div class="mb-12 timeline-container">
+                <div class="timeline-dot"></div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md ml-6">
+                    <div class="mb-3">
+                        <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded">July 2024</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Topic Assessment Form</h3>
+                    <p class="text-gray-600">
+                        Evaluatng the suggested topic and it's components with the evaluation panel. Accepted.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Milestone 1 -->
+            <div class="mb-12 timeline-container">
+                <div class="timeline-dot"></div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md ml-6">
+                    <div class="mb-3">
+                        <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded">August 2024</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Project Proposals for each component</h3>
+                    <p class="text-gray-600">
+                        Initial project proposals are submitted with supervisor approval, outlining objectives, technologies, and research gap of each component.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Milestone 2 -->
+            <div class="mb-12 timeline-container">
+                <div class="timeline-dot"></div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md ml-6">
+                    <div class="mb-3">
+                        <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded">December 2024</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Progress Presentation 1</h3>
+                    <p class="text-gray-600">
+                        Presented 50% project completion status including implemented ML models, challenges faced, and key findings.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Milestone 3 -->
+            <div class="mb-12 timeline-container">
+                <div class="timeline-dot"></div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md ml-6">
+                    <div class="mb-3">
+                        <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded">January 2025</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Research Paper</h3>
+                    <p class="text-gray-600">
+                        Finalized and submitted the research paper summarizing methodologies, results, and literature review.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Milestone 4 -->
+            <div class="mb-12 timeline-container">
+                <div class="timeline-dot"></div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md ml-6">
+                    <div class="mb-3">
+                        <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded">March 2025</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Progress Presentation 2</h3>
+                    <p class="text-gray-600">
+                        Demonstrated 90% project completion with User Interfaces and working functions.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Milestone 8 -->
+            <div class="mb-12 timeline-container">
+                <div class="timeline-dot"></div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md ml-6">
+                    <div class="mb-3">
+                        <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded">April 2025</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Final Report</h3>
+                    <p class="text-gray-600">
+                        Final report submission including project background, methodology, evaluation, results, and future recommendations.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Milestone 6 -->
+            <div class="mb-12 timeline-container">
+                <div class="timeline-dot"></div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md ml-6">
+                    <div class="mb-3">
+                        <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded">May 2025</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Final Presentation & Viva</h3>
+                    <p class="text-gray-600">
+                        Final project presentation and viva conducted to assess system quality and innovation with system testing results, validations, and user feedback.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Milestone 5 -->
+            <div class="mb-12 timeline-container">
+                <div class="timeline-dot"></div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md ml-6">
+                    <div class="mb-3">
+                        <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded">June 2024</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Website Assessment</h3>
+                    <p class="text-gray-600">
+                        Comprehensive evaluation of the project's official website including the details, performance, research resources, and accessibility for them.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Milestone 7 -->
+            <div class="mb-12 timeline-container">
+                <div class="timeline-dot"></div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md ml-6">
+                    <div class="mb-3">
+                        <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded">June 2024</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Logbook</h3>
+                    <p class="text-gray-600">
+                        Submission of individual logbooks documenting weekly progress, research activities, and development reflections.
+                    </p>
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+</section>
+
+    <!-- Documents & Presentations Section -->
+    <section id="documents" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Resources</h2>
+                <div class="w-24 h-1 bg-blue-600 mx-auto mb-8"></div>
+                <p class="text-lg text-gray-600 max-w-4xl mx-auto">
+                    Access our research documents and presentations.
+                </p>
+            </div>
+
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold mb-6">Documents</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Document 1 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <span class="text-blue-600 mr-3"><i class="fas fa-file-alt text-2xl"></i></span>
+                                <h4 class="text-lg font-bold">Topic Assessment Form</h4>
+                            </div>
+                            <a href="Docs/TAF_2024-25J-197.pdf" class="inline-block mt-4 text-blue-600 hover:text-blue-800 font-medium">  
+                                <i class="fas fa-download mr-2"></i> Download
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Document 2 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <span class="text-blue-600 mr-3"><i class="fas fa-file-alt text-2xl"></i></span>
+                                <h4 class="text-lg font-bold">Project Proposal - IT21210938</h4>
+                            </div>
+                            <a href="Docs/IT21210938 proposal report.pdf" class="inline-block mt-4 text-blue-600 hover:text-blue-800 font-medium">
+                                <i class="fas fa-download mr-2"></i> Download
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Document 2 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <span class="text-blue-600 mr-3"><i class="fas fa-file-alt text-2xl"></i></span>
+                                <h4 class="text-lg font-bold">Project Proposal - IT21349638</h4>
+                            </div>
+                            <a href="Docs/IT21349638 - Proposal Report.pdf" class="inline-block mt-4 text-blue-600 hover:text-blue-800 font-medium">
+                                <i class="fas fa-download mr-2"></i> Download
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Document 2 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <span class="text-blue-600 mr-3"><i class="fas fa-file-alt text-2xl"></i></span>
+                                <h4 class="text-lg font-bold">Project Proposal - IT21365300</h4>
+                            </div>
+                            <a href="Docs/IT21365300_Proposal Report.pdf" class="inline-block mt-4 text-blue-600 hover:text-blue-800 font-medium">
+                                <i class="fas fa-download mr-2"></i> Download
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Document 2 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <span class="text-blue-600 mr-3"><i class="fas fa-file-alt text-2xl"></i></span>
+                                <h4 class="text-lg font-bold">Project Proposal - IT21231728</h4>
+                            </div>
+                            <a href="Docs/IT21231728 Proposal Report.pdf" class="inline-block mt-4 text-blue-600 hover:text-blue-800 font-medium">
+                                <i class="fas fa-download mr-2"></i> Download
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Document 5 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <span class="text-blue-600 mr-3"><i class="fas fa-file-alt text-2xl"></i></span>
+                                <h4 class="text-lg font-bold">Final Report</h4>
+                            </div>
+                            <a href="Docs/24-25J-197_Final Report.pdf" class="inline-block mt-4 text-blue-600 hover:text-blue-800 font-medium">
+                                <i class="fas fa-download mr-2"></i> Download
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Document 6 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <span class="text-blue-600 mr-3"><i class="fas fa-file-alt text-2xl"></i></span>
+                                <h4 class="text-lg font-bold">Research Paper</h4>
+                            </div>
+                            <a href="Docs/ROADBUDDY Machine Learning based Mobile Assistant for Safer Driving.pdf" class="inline-block mt-4 text-blue-600 hover:text-blue-800 font-medium">
+                                <i class="fas fa-download mr-2"></i> Download
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-2xl font-bold mb-6">Presentations</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Presentation 1 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <span class="text-blue-600 mr-3"><i class="fas fa-file-powerpoint text-2xl"></i></span>
+                                <h4 class="text-lg font-bold">Proposal Presentation</h4>
+                            </div>
+                            <a href="Docs/Proposal pt_CDAP_24_25J_197.pptx" class="inline-block mt-4 text-blue-600 hover:text-blue-800 font-medium">
+                                <i class="fas fa-download mr-2"></i> Download
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Presentation 2 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <span class="text-blue-600 mr-3"><i class="fas fa-file-powerpoint text-2xl"></i></span>
+                                <h4 class="text-lg font-bold">Progress Presentation-1</h4>
+                            </div>
+                            <a href="Docs/CDAP_24_25J_197 PP1.pptx" class="inline-block mt-4 text-blue-600 hover:text-blue-800 font-medium">
+                                <i class="fas fa-download mr-2"></i> Download
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Presentation 3 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <span class="text-blue-600 mr-3"><i class="fas fa-file-powerpoint text-2xl"></i></span>
+                                <h4 class="text-lg font-bold">Progress Presentation-2</h4>
+                            </div>
+                            <a href="Docs/CDAP_24_25_197 PP2.pptx" class="inline-block mt-4 text-blue-600 hover:text-blue-800 font-medium">
+                                <i class="fas fa-download mr-2"></i> Download
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="results" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Results & Impact</h2>
+                <div class="w-24 h-1 bg-blue-600 mx-auto mb-8"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">RoadBuddy has demonstrated significant performance improvements in driver safety and behavior through rigorous testing.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Performance Metrics -->
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6">System Performance</h3>
+                    
+                    <!-- Driver Identification -->
+                    <div class="mb-6">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium">Driver Identification & Monitoring</span>
+                            <span class="font-bold">89%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 89%"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Blind Spot Detection -->
+                    <div class="mb-6">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium">Blind Spot Detection</span>
+                            <span class="font-bold">92%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 92%"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Traffic Sign Recognition -->
+                    <div class="mb-6">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium">Traffic Sign Recognition</span>
+                            <span class="font-bold">94%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 94%"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Parking Assistance -->
+                    <div class="mb-6">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium">Parking Assistance</span>
+                            <span class="font-bold">90%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-600 mt-6">The overall system demonstrated excellent performance across various lighting conditions and traffic loads, showing its versatility and robustness.</p>
+                </div>
+                
+                <!-- User Feedback -->
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6">User Feedback</h3>
+                    
+                    <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                        <div class="flex justify-between mb-4">
+                            <span class="font-medium">Increased driving confidence</span>
+                            <span class="font-bold text-blue-600">84%</span>
+                        </div>
+                        <p class="text-gray-600 text-sm">Percentage of users who reported increased confidence while driving, particularly in complex or dangerous situations.</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                        <div class="flex justify-between mb-4">
+                            <span class="font-medium">Improved driving discipline</span>
+                            <span class="font-bold text-blue-600">78%</span>
+                        </div>
+                        <p class="text-gray-600 text-sm">Percentage of users who indicated that the system's real-time alerts and guidance helped them become more conscious and disciplined drivers.</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h4 class="font-semibold mb-2">Areas for Improvement</h4>
+                        <ul class="text-gray-600 space-y-2">
+                            <li><span class="text-red-500">•</span> GPS signal reception issues in busy urban areas</li>
+                            <li><span class="text-red-500">•</span> Audio-visual feedback complexity for some users</li>
+                            <li><span class="text-red-500">•</span> Performance in extreme weather conditions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="final-output" class="py-20 bg-gray-100">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Final Output</h2>
+            <div class="w-24 h-1 bg-blue-600 mx-auto mb-8"></div>
+            <p class="text-gray-600 max-w-2xl mx-auto">Explore key visuals representing the final system performance and implementation highlights of RoadBuddy.</p>
+        </div>
+        <!-- Image Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Image 1 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <img src="Images/1.jpeg" alt="Final Output Image 1" class="w-full h-64 object-cover">
+            </div>
+
+            <!-- Image 2 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <img src="Images/2.jpeg" alt="Final Output Image 2" class="w-full h-64 object-cover">
+            </div>
+
+            <!-- Image 3 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <img src="Images/3.jpeg" alt="Final Output Image 3" class="w-full h-64 object-cover">
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Contact Us</h2>
+                <div class="w-24 h-1 bg-blue-600 mx-auto mb-8"></div>
+                <p class="text-lg text-gray-600 max-w-4xl mx-auto">
+                    Get in touch with our team for more information about RoadBuddy.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                <div>
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
+                        <br>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <span class="text-blue-600 mr-4 mt-1"><i class="fas fa-envelope text-xl"></i></span>
+                                <div>
+                                    <h4 class="font-bold mb-1">Email</h4>
+                                    <p class="text-gray-600">roadbuddy@sliit.lk</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-blue-600 mr-4 mt-1"><i class="fas fa-phone-alt text-xl"></i></span>
+                                <div>
+                                    <h4 class="font-bold mb-1">Phone</h4>
+                                    <p class="text-gray-600">+94 11 2345678</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-blue-600 mr-4 mt-1"><i class="fas fa-clock text-xl"></i></span>
+                                <div>
+                                    <h4 class="font-bold mb-1">Working Hours</h4>
+                                    <p class="text-gray-600">Monday - Friday: 9:00 AM - 5:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="mt-6 flex space-x-4">
+                            <a href="#" class="text-blue-600 hover:text-blue-800 text-xl"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="text-blue-600 hover:text-blue-800 text-xl"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-blue-600 hover:text-blue-800 text-xl"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="text-blue-600 hover:text-blue-800 text-xl"><i class="fab fa-github"></i></a>
+                        </div>
+                        <br><br><br><br><br><br><br><br><br>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-md mb-8">
+                        <h3 class="text-2xl font-bold mb-6">Location</h3>
+                        <div class="flex items-start mb-4">
+                            <span class="text-blue-600 mr-4 mt-1"><i class="fas fa-map-marker-alt text-xl"></i></span>
+                            <div>
+                                <h4 class="font-bold mb-1">Sri Lanka Institute of Information Technology</h4>
+                                <p class="text-gray-600">New Kandy Road, Malabe, Sri Lanka</p>
+                            </div>
+                        </div>
+                        <div class="aspect-w-16 aspect-h-9">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7929.216194726819!2d79.971!3d6.9147!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae250ae4a033d61%3A0x5f7ff8aa7f49edb3!2sSri%20Lanka%20Institute%20of%20Information%20Technology%20(SLIIT)!5e0!3m2!1sen!2slk!4v1716113914999!5m2!1sen!2slk" 
+                                width="100%" 
+                                height="450" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+
+
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <img src="Images/logo.png" alt="RoadBuddy Logo" class="h-8">
+                        <span class="ml-3 text-xl font-bold">RoadBuddy</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Machine Learning based driver assistant system to reduce road accidents in Sri Lanka.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition">About</a></li>
+                        <li><a href="#features" class="text-gray-400 hover:text-white transition">Features</a></li>
+                        <li><a href="#technologies" class="text-gray-400 hover:text-white transition">Technologies</a></li>
+                        <li><a href="#team" class="text-gray-400 hover:text-white transition">Team</a></li>
+                        <li><a href="#milestones" class="text-gray-400 hover:text-white transition">Milestones</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#documents" class="text-gray-400 hover:text-white transition">Documents</a></li>
+                        <li><a href="#documents" class="text-gray-400 hover:text-white transition">Presentations</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Research Papers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Blog</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Contact</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <span class="text-gray-400 mr-3"><i class="fas fa-map-marker-alt"></i></span>
+                            <span class="text-gray-400">New Kandy Road, Malabe, Sri Lanka</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-gray-400 mr-3"><i class="fas fa-envelope"></i></span>
+                            <span class="text-gray-400">roadbuddy@sliit.lk</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-gray-400 mr-3"><i class="fas fa-phone-alt"></i></span>
+                            <span class="text-gray-400">+94 11 2345678</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 mt-8 border-t border-gray-700 text-center">
+                <p class="text-gray-400">
+                    &copy; 2025 RoadBuddy. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    
